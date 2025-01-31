@@ -1,7 +1,7 @@
 # Jens Verlinden - An Unexpected Introduction 🎉
 
 Take a look at [my personal website](https://jensverlinden.be) for a pleasant surprise!\
-*Don't take this too seriously 😜*
+*Don't take this too seriously :)*
   
 ---
 
