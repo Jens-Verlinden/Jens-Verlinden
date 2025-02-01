@@ -9,6 +9,7 @@ export default function Home() {
   const [clicked, setClicked] = useState(false);
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
   const [quackAudio, setQuackAudio] = useState<HTMLAudioElement | null>(null);
+  const [audioContext, setAudioContext] = useState<AudioContext | null>(null);
   const [analyser, setAnalyser] = useState<AnalyserNode | null>(null);
 
   useEffect(() => {
@@ -19,18 +20,30 @@ export default function Home() {
 
     const quackElement = new Audio("/quack.mp3");
     setQuackAudio(quackElement);
-
-    const audioContext = new (window.AudioContext || window.AudioContext)();
-    const source = audioContext.createMediaElementSource(enamoradaElement);
-    const analyserNode = audioContext.createAnalyser();
-    analyserNode.fftSize = 256;
-    source.connect(analyserNode);
-    analyserNode.connect(audioContext.destination);
-    setAnalyser(analyserNode);
   }, []);
 
-  const start = () => {
-    audio?.play();
+  const startAudio = () => {
+    if (!audio) return;
+
+    if (!audioContext) {
+      const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+      if (!AudioContextClass) {
+        console.error("Web Audio API is niet ondersteund in deze browser.");
+        return;
+      }
+      const newAudioContext = new AudioContextClass();
+      const source = newAudioContext.createMediaElementSource(audio);
+      const analyserNode = newAudioContext.createAnalyser();
+
+      analyserNode.fftSize = 256;
+      source.connect(analyserNode);
+      analyserNode.connect(newAudioContext.destination);
+
+      setAudioContext(newAudioContext);
+      setAnalyser(analyserNode);
+    }
+
+    audio.play().catch((error) => console.error("Autoplay blocked:", error));
   };
 
   const playQuack = () => {
@@ -41,30 +54,10 @@ export default function Home() {
   };
 
   useEffect(() => {
-    start();
+    if (clicked) {
+      startAudio();
+    }
   }, [clicked]);
-
-  useEffect(() => {
-    if (audio) {
-      const pulseElements = document.querySelectorAll('.pulse');
-      if (clicked) {
-        pulseElements.forEach((element) => element.classList.add('pulse-active'));
-      } else {
-        pulseElements.forEach((element) => element.classList.remove('pulse-active'));
-      }
-    }
-  }, [clicked, audio]);
-
-  useEffect(() => {
-    if (audio) {
-      const footer = document.querySelector('footer');
-      if (clicked) {
-        footer?.classList.add('new-dance');
-      } else {
-        footer?.classList.remove('new-dance');
-      }
-    }
-  }, [clicked, audio]);
 
   return (
     <>
@@ -74,15 +67,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={`container min-h-screen min-w-full flex flex-col justify-center items-center relative overflow-hidden`}>
-        <div className="absolute top-0 right-0 m-4 z-50 flex space-x-4">
-          <a href="https://www.linkedin.com/in/jens-verlinden-informaticus" target="_blank" rel="noopener noreferrer" className="pulse">
-            <img src="/linkedin.png" alt="LinkedIn" className="w-8 h-8 filter invert opacity-100" />
-          </a>
-          <a href="https://github.com/Jens-Verlinden" target="_blank" rel="noopener noreferrer" className="pulse">
-            <img src="/github.png" alt="GitHub" className="w-8 h-8 filter invert opacity-100" />
-          </a>
-        </div>
+      <div className="container min-h-screen min-w-full flex flex-col justify-center items-center relative overflow-hidden">
         <img
           src="/favicon.ico"
           alt="favicon"
@@ -91,9 +76,6 @@ export default function Home() {
         />
         {clicked ? <Clicked /> : <Unclicked setClicked={setClicked} />}
       </div>
-      <footer className="w-full absolute bottom-0 py-4 bg-transparent text-white text-center new-dance">
-        <p className="text-xs opacity-80 italic md:text-sm">© {new Date().getFullYear()} Jens Verlinden. All rights reserved. Inspired by <a className='underline' href="https://matias.me/nsfw/">matias.me</a>.</p>
-      </footer>
     </>
   );
 }
