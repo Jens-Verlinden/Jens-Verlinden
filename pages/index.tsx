@@ -90,7 +90,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container min-h-screen min-w-full flex flex-col justify-center items-center relative overflow-hidden">
-        <div className="absolute top-0 pt-4 right-0 m-4 z-50 flex space-x-4">
+        <div className="absolute top-0 pt-4 right-0 m-4 z-50 flex space-x-4 pr-4">
           <a href="https://www.linkedin.com/in/jens-verlinden-informaticus" target="_blank" rel="noopener noreferrer" className="pulse">
             <img src="/linkedin.png" alt="LinkedIn" className="w-[9vw] max-w-14 filter invert opacity-100" />
           </a>
@@ -101,7 +101,7 @@ export default function Home() {
         <img
           src="/favicon.ico"
           alt="favicon"
-          className={`absolute top-0 pt-4 left-0 m-4 z-50 w-[10vw] max-w-16 cursor-pointer ${clicked ? 'rotate' : ''}`}
+          className={`absolute ml-4 top-0 pt-4 left-2 m-4 z-50 w-[10vw] max-w-16 cursor-pointer ${clicked ? 'rotate' : ''}`}
           onClick={playQuack}
         />
         {clicked ? <Clicked /> : <Unclicked setClicked={setClicked} />}

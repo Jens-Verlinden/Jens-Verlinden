@@ -45,7 +45,7 @@ export default function Clicked() {
     if (slotIndex % 2 === 0) {
       return 0.15 + (slotIndex / totalSlots) * 0.3;
     } else {
-      return 0.6 + ((slotIndex - 1) / totalSlots) * 0.2;
+      return 0.6 + ((slotIndex - 1) / totalSlots) * 0.22;
     }
   };
 
@@ -71,7 +71,7 @@ export default function Clicked() {
     };
   };
 
-  const TOTAL_LOGOS = 20;
+  const TOTAL_LOGOS = initialLogoFiles.length;
   const leftCount = Math.ceil(TOTAL_LOGOS / 2);
   const rightCount = Math.floor(TOTAL_LOGOS / 2);
 
@@ -107,6 +107,7 @@ export default function Clicked() {
   }, []);
 
   const handleAnimationEnd = (logoId: number) => {
+    console.log('Animation ended for logo', logoId);
     setTimeout(() => {
       setLogos(prev =>
         prev.map(logo => {
@@ -141,8 +142,7 @@ export default function Clicked() {
       <img
         src="/shiny-ditto.gif"
         alt="Dancing Ditto, but shiny..."
-        className="absolute w-70 h-70 px-16 transform transition-transform duration-1000 ease-in-out z-50"
-        style={{ animation: 'zoomIn 2s forwards' }}
+        className="absolute w-70 h-70 px-16 transform transition-transform duration-1000 ease-in-out z-50 zoomInWithShadow"
       />
       {logos.map(logo => {
         const moveDirection =

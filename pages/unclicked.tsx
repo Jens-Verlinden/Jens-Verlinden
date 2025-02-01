@@ -42,27 +42,8 @@ export default function Unclicked({ setClicked }: UnclickedProps) {
   return (
     <div className="container min-h-screen min-w-full flex flex-col justify-center items-center relative overflow-hidden">
       <div className="z-50 px-6">
-        <p
-          style={{
-            padding: 0,
-            margin: 0,
-            backgroundColor: "transparent",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginBottom: "2rem",
-            width: "40em",
-            position: "relative",
-            color: "hsl(0, 0%, 68%)",
-            fontWeight: "extrabold",
-            fontFamily: '"Anonymous Pro", monospace',
-            letterSpacing: "7px",
-            overflow: "hidden",
-            borderRight: "2px solid hsl(0, 0%, 80%)",
-            animation:
-              "typewriter 2s steps(22) 1s 1 normal both, blinkTextCursor 800ms infinite",
-          }}
-        >
+        <p className="p-0 m-0 bg-transparent flex items-center justify-center mb-8 w-160 relative 
+        text-gray-400 font-extrabold font-mono tracking-widest overflow-hidden border-r-2 border-gray-300 animate-typewriter">
           Welcome to the very professional porfolio of Jens Verlinden :)
         </p>
         <button

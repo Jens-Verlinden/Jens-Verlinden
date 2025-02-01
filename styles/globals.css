@@ -233,6 +233,42 @@
     animation-delay: var(--random-delay);
   }
 
+  @media (max-width: 1400px) {
+    .logo {
+      width: calc(7vw * var(--random-size));
+    }
+  }
+  
+  @media (max-width: 1200px) {
+    .logo {
+      width: calc(10vw * var(--random-size));
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .logo {
+      width: calc(9vw * var(--random-size));
+    }
+  }
+  
+  @media (max-width: 800px) {
+    .logo {
+      width: calc(13vw * var(--random-size));
+    }
+  }
+
+  @media (max-width: 600px) {
+    .logo {
+      width: calc(16vw * var(--random-size));
+    }
+  }
+
+  @media (min-width: 1400px) {
+    .logo {
+      width: calc(5vw * var(--random-size));
+    }
+  }
+
   @keyframes typewriter {
     from {
       width: 0;
@@ -258,4 +294,14 @@
   .animate-zoomIn:hover {
     animation: zoomIn 2s forwards, breathing 3s ease-in-out infinite 2s, shake 0.3s infinite;
   }
-}  
+
+  .zoomInWithShadow {
+    animation: zoomIn 2s forwards;
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #222);
+  }
+
+  .animate-typewriter {
+    animation: typewriter 2s steps(22) 1s 1 normal both, blinkTextCursor 800ms infinite;
+  }
+}
