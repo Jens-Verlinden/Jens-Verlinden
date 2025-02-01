@@ -241,7 +241,7 @@
   
   @media (max-width: 1200px) {
     .logo {
-      width: calc(10vw * var(--random-size));
+      width: calc(8vw * var(--random-size));
     }
   }
 

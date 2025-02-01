@@ -43,8 +43,8 @@ export default function Unclicked({ setClicked }: UnclickedProps) {
     <div className="container min-h-screen min-w-full flex flex-col justify-center items-center relative overflow-hidden">
       <div className="z-50 px-6">
         <p className="p-0 m-0 bg-transparent flex items-center justify-center mb-8 w-160 relative 
-        text-gray-400 font-extrabold font-mono tracking-widest overflow-hidden border-r-2 border-gray-300 animate-typewriter">
-          Welcome to the very professional porfolio of Jens Verlinden :)
+        text-gray-300 font-extrabold font-mono tracking-widest overflow-hidden border-r-2 border-gray-300 animate-typewriter">
+          Welcome to the very professional portfolio of Jens Verlinden :)
         </p>
         <button
         className={`px-2 py-3 font-semibold shadow-lg italic text-lg bg-purple-600 text-white rounded-lg ${showButton ? 'animate-zoomIn' : 'invisible'}`}

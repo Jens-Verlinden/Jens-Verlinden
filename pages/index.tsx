@@ -85,7 +85,7 @@ export default function Home() {
     <>
       <Head>
         <title>{!clicked ? "Jens Verlinden" : ":)"}</title>
-        <meta name="description" content="Jens Verlinden - An unexpected introduction" />
+        <meta name="description" content="An unexpected introduction..." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
