@@ -109,7 +109,7 @@
     100% { transform: translate(0.5px, -0.5px) rotate(-0.5deg); }
   }
 
-  a:hover, button:hover {
+  a:hover:not(.pulse-active, .animate-zoomIn), button:hover:not(.pulse-active, .animate-zoomIn) {
     animation: shake 0.3s;
     animation-iteration-count: infinite;
   }
@@ -198,7 +198,7 @@
   }
 
   .new-dance {
-    animation: newDance 1s infinite;
+    animation: newDance 1.5s infinite;
   }
 
   @keyframes rotate-animation {
@@ -231,5 +231,31 @@
     width: calc(120px * var(--random-size));
     animation: var(--move-direction) 5s linear;
     animation-delay: var(--random-delay);
+  }
+
+  @keyframes typewriter {
+    from {
+      width: 0;
+    }
+    to {
+      width: 20em;
+    }
+  }
+  
+  @keyframes blinkTextCursor {
+    from {
+      border-right-color: hsl(0, 0%, 80%);
+    }
+    to {
+      border-right-color: transparent;
+    }
+  }
+
+  .animate-zoomIn {
+    animation: zoomIn 2s forwards, breathing 3s ease-in-out infinite 2s;
+  }
+  
+  .animate-zoomIn:hover {
+    animation: zoomIn 2s forwards, breathing 3s ease-in-out infinite 2s, shake 0.3s infinite;
   }
 }  
