@@ -85,6 +85,15 @@ export default function Home() {
     <>
       <Head>
         <title>Jens Verlinden</title>
+        <script type="application/ld+json">
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Jens Verlinden",
+            "alternateName": ["Jens 🦆", "Jens V.", "Jens", "JV", "JV7"],
+            "url": "https://jensverlinden.be/"
+          }
+        </script>
         <meta name="title" content="Jens Verlinden" />
         <meta name="description" content="An unexpected introduction" />
         <meta property="og:type" content="website" />
